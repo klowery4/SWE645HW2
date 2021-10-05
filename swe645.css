@@ -1,0 +1,102 @@
+/* Kevin Lowery
+SWE 645 Fall 2021 Homework 1
+CSS used by web application in part 2 of the assignment */ 
+<style>
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+h2 {
+	color:#004d26;
+	font-size:1.45rem;
+	line-height:1.81rem;
+	font-weight:600;
+	font-family:inherit;
+	margin:0 0 20px;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #004d26;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.container-no-color{
+  padding: 20px;
+  margin: 10px;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #eff0e7;
+  padding: 20px;
+  margin: 10px;
+}
+
+.column-small {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.column-large {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.last {
+  margin-bottom: 15px;
+}
+
+.last-large {
+  margin-bottom: 25px;
+}
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column-small, .column-large {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+</style>
