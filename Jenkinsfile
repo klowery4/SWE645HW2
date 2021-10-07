@@ -1,17 +1,19 @@
 pipeline {
     agent any
+
     environment {
-        DOCKERHUB_PASS = credentials('docker-pass')
+        DOCKERHUB_ACCESS_KEY = credentials('DOCKERHUB_ACCESS_KEY')
     }
+
     stages {
         stage("Building the Student Survey Image"){
             steps {
                 script {
-                    checkout cm
+                    checkout scm
                     sh 'rm -rf *.war'
                     sh 'jar -cvf survey.war -C WebContent/ .'
                     sh 'echo ${BUILD_TIMESTAMP}'
-                    sh "docker login -u kevin3022 -p ${DOCKERHUB_PASS}"
+                    sh "docker login -u kevin3022 -p ${DOCKERHUB_ACCESS_KEY}"
                     def customImage = docker.build("kevin3022/hw1:${BUILD_TIMESTAMP}")
                 }
             }
@@ -25,7 +27,7 @@ pipeline {
             }
         }
 
-        stage("Deploying to Rancher as single pd"){
+        stage("Deploying to Rancher as single pod"){
             steps {
                 sh 'kubectl set image deployment/stusurvey-pipeline stusurvey-pipeline=kevin3022/hw1:${BUILD_TIMESTAMP} -n jenkins-pipeline'
             }
