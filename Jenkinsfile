@@ -13,7 +13,7 @@ pipeline {
                     sh 'rm -rf *.war'
                     sh 'jar -cvf survey.war -C WebContent/ .'
                     sh 'echo ${BUILD_TIMESTAMP}'
-                    sh "sudo docker login -u kevin3022 -p 76hy7THy2T56"
+                    sh "docker login -u kevin3022 -p 76hy7THy2T56"
                     def customImage = docker.build("kevin3022/hw1:${BUILD_TIMESTAMP}")
                 }
             }
