@@ -29,10 +29,17 @@ INCLUDED FILES
 ------------
 
 readme.txt - This readme file
+
 SWE645HW2.pdf - Detailed step by step instructions
+
 SWE645HW2.mp4 - Video for Parts 1 and 2. Extra credit portion will be shown in a live demo.
+
 Dockerfile - the Dockerfile used to build our image
+
 Jenkinsfile - the Jenkinsfile that defines our build pipeline
+
 survey.war - Web Application Resource file to deploy to the Tomcat App Server
+
 index.html - HTML page for our survey
+
 swe645.css - Cascading Style Sheet used by the survey page
