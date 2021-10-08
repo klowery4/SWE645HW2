@@ -32,13 +32,13 @@ pipeline {
 
         stage("Deploying to Rancher as single pod"){
             steps {
-                sh 'kubectl set image deployment/hw2-deploy hw2-deploy=kevin3022/hw1:${BUILD_NUMBER} -n namespacehw2'
+                sh 'kubectl set image deployment/hw2-deploy container-0=kevin3022/hw1:${BUILD_NUMBER} -n namespacehw2'
             }
         }
 
         stage("Deploying to Rancher with load balancer"){
             steps {
-                sh 'kubectl set image deployment/hw2-deploy-loadbalancer hw2-deploy-loadbalancer=kevin3022/hw1:${BUILD_NUMBER} -n namespacehw2'
+                sh 'kubectl set image deployment/hw2-deploy-loadbalancer container-0=kevin3022/hw1:${BUILD_NUMBER} -n namespacehw2'
             }
         }
     }
