@@ -1,8 +1,10 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKERHUB_ACCESS_KEY = credentials('DOCKERHUB_ACCESS_KEY')
+    environment { 
+        registry = "kevin3022/hw1" 
+        registryCredential = 'kevin3022' 
+        dockerImage = '' 
     }
 
     stages {
@@ -13,8 +15,7 @@ pipeline {
                     sh 'rm -rf *.war'
                     sh 'jar -cvf survey.war -C WebContent/ .'
                     sh 'echo ${BUILD_TIMESTAMP}'
-                    sh "docker login -u kevin3022 -p ${DOCKERHUB_ACCESS_KEY}"
-                    def customImage = docker.build("kevin3022/hw1:${BUILD_TIMESTAMP}")
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
@@ -22,7 +23,9 @@ pipeline {
         stage("Pushing Image to DockerHub"){
             steps {
                 script {
-                    sh 'docker push kevin3022/hw1:${BUILD_TIMESTAMP}'
+                    docker.withRegistry('', registryCredential) { 
+                        dockerImage.push() 
+                    }
                 }
             }
         }
